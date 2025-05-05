@@ -20,8 +20,8 @@ def query_rag(question: str, history: list[str], k: int = 3) -> str:
     context = "\n\n".join([doc.page_content for doc in docs])
 
     messages = [
-        SystemMessage(content="너는 건설 안전 매뉴얼 전문가 챗봇이야. 질문에 정확하고 간결하게 한국어로 답변해."),
-        HumanMessage(content=f"아래 내용을 참고해서 질문에 답해줘:\n\n{context}")
+        SystemMessage(content="You are a construction safety manual expert chatbot. Always respond in English, even if the question or documents are in Korean. Your answers must be accurate and concise."),
+        HumanMessage(content=f"Refer to the following content to answer the question:\n\n{context}")
     ]
 
     for idx, msg in enumerate(history):

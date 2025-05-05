@@ -1,8 +1,8 @@
 import os
 from langchain_community.document_loaders import PyMuPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.embeddings import OpenAIEmbeddings
-from langchain.vectorstores import Chroma
+from langchain_community.embeddings import OpenAIEmbeddings
+from langchain_community.vectorstores import Chroma
 from tqdm import tqdm
 from app.config import OPENAI_API_KEY, DATA_DIR, CHROMA_DIR
 
@@ -10,7 +10,7 @@ def load_pdfs_and_create_vectorstore():
     os.makedirs(CHROMA_DIR, exist_ok=True)
     documents = []
 
-    # PDF 파일들 로드
+    # PDF file load
     for filename in os.listdir(DATA_DIR):
         if filename.endswith(".pdf"):
             filepath = os.path.join(DATA_DIR, filename)
@@ -19,7 +19,7 @@ def load_pdfs_and_create_vectorstore():
             docs = loader.load()
             documents.extend(docs)
 
-    # 텍스트 chunking
+    # text chunking
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=500,
         chunk_overlap=50
@@ -28,10 +28,10 @@ def load_pdfs_and_create_vectorstore():
 
     print(f"Total chunks created: {len(chunks)}")
 
-    # OpenAI 임베딩 생성
+    # OpenAI Embedding
     embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
 
-    # Chroma DB 저장
+    # ChromaDB save
     vectordb = Chroma.from_documents(
         documents=chunks,
         embedding=embeddings,
@@ -40,7 +40,8 @@ def load_pdfs_and_create_vectorstore():
     vectordb.persist()
     print(f"Vectorstore saved to: {CHROMA_DIR}")
 
-
+if __name__ == "__main__":
+    load_pdfs_and_create_vectorstore()
 
 
 
