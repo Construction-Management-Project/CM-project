@@ -8,7 +8,7 @@ __pycache__/
 venv/
 
 # LangChain Vector DB
-db/chroma/
+db/faiss_index
 
 # VSCode
 .vscode/
