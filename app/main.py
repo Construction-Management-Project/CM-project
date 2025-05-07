@@ -6,10 +6,10 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],        # 도메인 접근 허용
-    allow_credentials=True,     # 쿠키 허용
-    allow_methods=["*"],        # HTTP 메서드 허용
-    allow_headers=["*"],        # 요청 허용
+    allow_origins=["*"],        # Allow all domains to access
+    allow_credentials=True,     # Allow cookies
+    allow_methods=["*"],        # Allow all HTTP methods
+    allow_headers=["*"],        # Allow all request headers
 )
 
 app.include_router(router)
