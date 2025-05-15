@@ -12,3 +12,6 @@ db/faiss_index
 
 # VSCode
 .vscode/
+
+# DS_store
+.DS_Store
