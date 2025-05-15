@@ -8,7 +8,7 @@ router = APIRouter()
 class ChatRequest(BaseModel):
     question: str
     history: List[str] = []
-    top_k: int = 3
+    top_k: int = 5
 
 class ChatResponse(BaseModel):
     answer: str
